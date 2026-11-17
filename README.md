@@ -32,3 +32,7 @@ The form does **not** send messages by itself. It opens the visitor's SMS applic
 Run `python3 -m http.server 8080 --directory dist` from the repository root, then visit `http://localhost:8080`. The original photographs must remain in `dist/assets` for local display. If you've downloaded this ZIP separately, copy the photos from your original repository first, or run `node scripts/build.mjs` to fetch them from GitHub while online.
 
 To set the SEO domain during a local build, set `SITE_URL=https://yourdomain.com` before running `node scripts/build.mjs`. Vercel automatically supplies the production URL if `SITE_URL` is not set.
+
+## Mobile icon consistency update — 17 November 2026
+
+Replaced every font-based decorative starburst and direction-arrow symbol in `dist/index.html` with inline SVG icons, including the mobile menu and floating quote call-to-action. Added shared SVG sizing rules to `dist/styles.css`. There are no emoji-style pictographs in the UI markup. All services, photos, navigation labels, project tabs, contacts, and SMS quote logic are unchanged.
