@@ -1,38 +1,37 @@
-# A & A Lawn & More — Landscape-inspired redesign
+# A & A Lawn & More — Website update (November 17, 2026)
 
-A fully rebuilt, responsive one-page landscaping website for Aaron and Alvin, preserving the original dark-green / lime / cream branding and all 15 supplied work photos in the existing GitHub repository. No dependencies, no framework, no hosting inside ChatGPT.
+This is the **complete updated code package** for `github.com/caliphsafe/analawn`, preserving the existing website, design palette, and your real project photos. It does **not** change your existing GitHub repository automatically.
 
-## Upload to your existing GitHub repo
+## What's changed
 
-1. **Do not delete the existing `dist/assets` photographs.** They are original owner-supplied photography and are intentionally left untouched in this redesign ZIP.
-2. Extract this ZIP. In `caliphsafe/analawn` on GitHub, choose **Add file → Upload files**, and upload the **contents** of the extracted folder, retaining the `dist/` and `scripts/` directory structure. Approve replacing the same-named files.
-3. If your upload tool cannot upload nested directories directly, use the GitHub web editor or upload via GitHub Desktop.
-4. On Vercel, import or redeploy `caliphsafe/analawn` on the `main` branch. Leave **Root Directory** at the repository root. Framework: **Other**. The included `vercel.json` uses `node scripts/build.mjs` and serves `dist`.
+- **Service icons:** replaced the four thin-line drawings with custom, filled multi-color SVG illustrations representing lawn mowing, fall cleanup, hedge trimming, and garden beds/mulch. No emojis.
+- **Layout:** removed the fixed-height mobile hero arrangement that caused "SCROLL TO EXPLORE" to overlap the main CTA. Hero height now expands to fit its content. Adjusted spacing and service icon positioning on narrow screens; added a tablet menu breakpoint to prevent crowded navigation.
+- **Group text:** the primary quote CTA creates **one SMS draft listing both** Aaron (**774-365-2080**) and Alvin (**508-509-8320**) using a comma-separated multi-recipient `sms:` URI. The review screen explicitly identifies both recipients. A fallback opens a blank group draft and the form still supports copying the full quote. **The site does not send a text automatically.** A visitor must verify both recipients and tap Send in their texting application. Some Android/iOS apps may ignore multiple recipients or the prefilled body: this cannot be forced by a browser-only website. Test on your customers' devices before launch.
+- **Contact wording:** "Call Aaron & Alvin" now appears in the contact sections and utility CTA. Individual tap-to-call numbers remain separately labeled for the two people, since standard phone calls cannot connect to both numbers at once.
+- **Sharing previews:** Open Graph and Twitter preview images now use your official `assets/aa-logo.png`, not a project photo. The official logo is also used as the browser and Apple touch icon. Social previews may need to refresh their cache after the new site is deployed.
 
-### Image handling
+## Upload to the existing GitHub repository
 
-The ZIP contains updated source code and the new favicon, but not duplicated photographic binaries (which already exist in the target repository). Every original image path is retained. As an extra safeguard, the build script restores any missing original photos or the A & A logo by downloading them from the public `caliphsafe/analawn` `main` branch during build. Thus, the ZIP is specifically prepared to update **this existing repository**, not replace its owner-supplied asset library.
+1. Download and extract this ZIP.
+2. Go to [caliphsafe/analawn](https://github.com/caliphsafe/analawn) and upload the **contents** of the extracted folder, replacing matching existing files. Maintain the top-level `dist/`, `scripts/`, and `vercel.json` paths. (The ZIP does not wrap them in another folder.)
+3. **Keep the existing project photography and `dist/assets/aa-logo.png` in your repository.** This ZIP intentionally does not duplicate the already committed large original photo assets. It includes the four new SVG icon assets.
+4. Redeploy in Vercel. Set Framework preset **Other**, Root Directory the repository root, and use the committed `vercel.json` which builds with `node scripts/build.mjs` and serves `dist`.
+5. Check both mobile and desktop and test the SMS link from a real Android phone and a real iPhone. Before sending, verify that the draft shows **both Aaron and Alvin in the same conversation**.
 
-## Features
+### Existing owner-provided photos
 
-- One-word navigation: Services / Work / About / Process / Contact
-- Responsive full-bleed photo hero, original landscape-themed line icons, editorial section layouts
-- Six real before-and-after image pairs with keyboard-accessible project tabs
-- Actual A & A yard and team photographs; no stock photos or emojis in the UI
-- Three-step service quote with validation, text-message preview, group SMS, two individual fallback links and copy option
-- Mobile menu, mobile quote shortcut, FAQs, phone links and structured local-business metadata
-- Accessibility: skip navigation, visible keyboard focus, labelled form fields, reduced-motion support
+The previous repository already contains `dist/assets/aa-logo.png`, `lawn-stripes.webp`, `team-trimming.webp`, and all six original before/after pairs. Those files are not altered by this ZIP. The included build script has an optional fallback which restores missing original photographs from the public `caliphsafe/analawn` repository during a Vercel build.
 
-## Quotes
+### Social sharing
 
-The form does **not** send messages by itself. It opens the visitor's SMS application with a drafted message to Aaron (774-365-2080) and Alvin (508-509-8320). Visitors must tap Send. Some phones may not support group SMS URL schemes; single-recipient fallback links and Copy are provided. Test on iOS and Android before launch.
+Link previews are determined by the publicly deployed page, not by opening `dist/index.html` directly. The build script replaces `https://site-origin.invalid` in OG image/URL metadata, canonical tags, robots.txt, and sitemap.xml with the deployed domain. For a custom domain, set the Vercel environment variable `SITE_URL=https://your-domain.example` and redeploy. Messaging apps may cache older thumbnails.
 
-## Local preview
+### Local editing
 
-Run `python3 -m http.server 8080 --directory dist` from the repository root, then visit `http://localhost:8080`. The original photographs must remain in `dist/assets` for local display. If you've downloaded this ZIP separately, copy the photos from your original repository first, or run `node scripts/build.mjs` to fetch them from GitHub while online.
+Edit `dist/index.html`, `dist/styles.css`, and `dist/app.js`. New custom icon files are in `dist/assets/service-*.svg`. No npm packages are required. To preview locally with photos, clone your existing repository and replace the updated ZIP files in it, then run:
 
-To set the SEO domain during a local build, set `SITE_URL=https://yourdomain.com` before running `node scripts/build.mjs`. Vercel automatically supplies the production URL if `SITE_URL` is not set.
+```sh
+python3 -m http.server 8080 --directory dist
+```
 
-## Mobile icon consistency update — 17 November 2026
-
-Replaced every font-based decorative starburst and direction-arrow symbol in `dist/index.html` with inline SVG icons, including the mobile menu and floating quote call-to-action. Added shared SVG sizing rules to `dist/styles.css`. There are no emoji-style pictographs in the UI markup. All services, photos, navigation labels, project tabs, contacts, and SMS quote logic are unchanged.
+This avoids depending on ChatGPT hosting. All generated site files remain under your control.
