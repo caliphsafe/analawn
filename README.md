@@ -1,24 +1,34 @@
-# A & A Lawn & More
+# A & A Lawn & More — Landscape-inspired redesign
 
-Complete one-page landscaping website, including the logo, locally hosted fonts, 15 work photographs, six before-and-after projects, and a detailed quote form. GitHub is the source of truth. No ChatGPT hosting or account is required to run this site.
+A fully rebuilt, responsive one-page landscaping website for Aaron and Alvin, preserving the original dark-green / lime / cream branding and all 15 supplied work photos in the existing GitHub repository. No dependencies, no framework, no hosting inside ChatGPT.
 
-## Deploy on Vercel
+## Upload to your existing GitHub repo
 
-1. In Vercel, choose **Add New → Project** and import **caliphsafe/analawn**.
-2. Use the **main** branch and keep **Root Directory** at the repository root (do not select `dist`).
-3. Framework preset: **Other**. The committed `vercel.json` sets the build command to `node scripts/build.mjs`, output directory to `dist`, and skips dependency installation.
-4. Click **Deploy**. No API keys, npm packages, or lockfile are required.
+1. **Do not delete the existing `dist/assets` photographs.** They are original owner-supplied photography and are intentionally left untouched in this redesign ZIP.
+2. Extract this ZIP. In `caliphsafe/analawn` on GitHub, choose **Add file → Upload files**, and upload the **contents** of the extracted folder, retaining the `dist/` and `scripts/` directory structure. Approve replacing the same-named files.
+3. If your upload tool cannot upload nested directories directly, use the GitHub web editor or upload via GitHub Desktop.
+4. On Vercel, import or redeploy `caliphsafe/analawn` on the `main` branch. Leave **Root Directory** at the repository root. Framework: **Other**. The included `vercel.json` uses `node scripts/build.mjs` and serves `dist`.
 
-The build uses Vercel's production domain for the canonical URL, social metadata, business schema, robots.txt and sitemap. If connecting a custom domain, set the optional **SITE_URL** environment variable to its full origin (for example `https://your-business.com`) and redeploy. Do not include a path or trailing query. Vercel system environment variables should remain enabled (the default).
+### Image handling
 
-## Editing and local preview
+The ZIP contains updated source code and the new favicon, but not duplicated photographic binaries (which already exist in the target repository). Every original image path is retained. As an extra safeguard, the build script restores any missing original photos or the A & A logo by downloading them from the public `caliphsafe/analawn` `main` branch during build. Thus, the ZIP is specifically prepared to update **this existing repository**, not replace its owner-supplied asset library.
 
-Edit `dist/index.html`, `dist/styles.css`, and `dist/app.js`; photos and fonts live in `dist/assets/`. Preview with `python3 -m http.server 8080 --directory dist`. To exercise the deployment build locally: `SITE_URL=http://localhost:8080 node scripts/build.mjs`. The committed `https://site-origin.invalid` metadata placeholder is replaced at deployment; it is not a hosting dependency.
+## Features
+
+- One-word navigation: Services / Work / About / Process / Contact
+- Responsive full-bleed photo hero, original landscape-themed line icons, editorial section layouts
+- Six real before-and-after image pairs with keyboard-accessible project tabs
+- Actual A & A yard and team photographs; no stock photos or emojis in the UI
+- Three-step service quote with validation, text-message preview, group SMS, two individual fallback links and copy option
+- Mobile menu, mobile quote shortcut, FAQs, phone links and structured local-business metadata
+- Accessibility: skip navigation, visible keyboard focus, labelled form fields, reduced-motion support
 
 ## Quotes
 
-The three-step form validates service selections, property information, contact details, timing and work requested. It prepares a text to Aaron (774-365-2080) and Alvin (508-509-8320). Customers review and press Send in their messaging app. The website does not automatically transmit texts or store requests. Separate-recipient links and a copy button are included for devices that do not support group SMS links. Photos can be attached in the messaging app or shared using the optional photo-album URL field. Test native text behavior on target phones before public launch.
+The form does **not** send messages by itself. It opens the visitor's SMS application with a drafted message to Aaron (774-365-2080) and Alvin (508-509-8320). Visitors must tap Send. Some phones may not support group SMS URL schemes; single-recipient fallback links and Copy are provided. Test on iOS and Android before launch.
 
-## Photography
+## Local preview
 
-All work photos are supplied by the owner. The gallery includes fall cleanup, hedge cleanup, courtyard cleanup, flower-bed mulching, porch-bed mulching, and stone-edged bed cleanup. Three additional photos appear in the hero and about sections. Before/after views are shown separately because camera angles differ.
+Run `python3 -m http.server 8080 --directory dist` from the repository root, then visit `http://localhost:8080`. The original photographs must remain in `dist/assets` for local display. If you've downloaded this ZIP separately, copy the photos from your original repository first, or run `node scripts/build.mjs` to fetch them from GitHub while online.
+
+To set the SEO domain during a local build, set `SITE_URL=https://yourdomain.com` before running `node scripts/build.mjs`. Vercel automatically supplies the production URL if `SITE_URL` is not set.
