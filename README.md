@@ -1,12 +1,16 @@
 # A & A Lawn & More — Website update (November 17, 2026)
 
-This is the **complete updated code package** for `github.com/caliphsafe/analawn`, preserving the existing website, design palette, and your real project photos. It does **not** change your existing GitHub repository automatically.
+This is the **complete updated code package** for `github.com/caliphsafe/analawn`, preserving the existing website, design palette, and your real project photos. The current source is maintained in GitHub and deployed by Vercel.
 
 ## What's changed
 
 - **Service icons:** replaced the four thin-line drawings with custom, filled multi-color SVG illustrations representing lawn mowing, fall cleanup, hedge trimming, and garden beds/mulch. No emojis.
 - **Layout:** removed the fixed-height mobile hero arrangement that caused "SCROLL TO EXPLORE" to overlap the main CTA. Hero height now expands to fit its content. Adjusted spacing and service icon positioning on narrow screens; added a tablet menu breakpoint to prevent crowded navigation.
-- **Group text:** the primary quote CTA creates **one SMS draft listing both** Aaron (**774-365-2080**) and Alvin (**508-509-8320**) using a comma-separated multi-recipient `sms:` URI. The review screen explicitly identifies both recipients. A fallback opens a blank group draft and the form still supports copying the full quote. **The site does not send a text automatically.** A visitor must verify both recipients and tap Send in their texting application. Some Android/iOS apps may ignore multiple recipients or the prefilled body: this cannot be forced by a browser-only website. Test on your customers' devices before launch.
+- **Email quotes:** the detailed three-step form posts to FormSubmit's AJAX endpoint for **aandalawnguys@gmail.com**. Email is required and used as Reply-To. All property, service, timing, contact and access details plus the optional photo URL are included in the message. The UI handles pending, provider acceptance and failures; it blocks duplicate clicks and preserves details if submission cannot be confirmed. No SMS draft is opened.
+
+### Required FormSubmit activation
+Submit one clearly labeled test from the deployed website, then open **aandalawnguys@gmail.com** and approve FormSubmit's activation email (check Spam too). After activation, submit another test and confirm receipt. An API acceptance response is not proof of inbox delivery. No activation or delivery is claimed as verified by this code update. FormSubmit processes visitor data; the form includes a disclosure. No API key or Vercel environment variable is needed.
+
 - **Contact wording:** "Call Aaron & Alvin" now appears in the contact sections and utility CTA. Individual tap-to-call numbers remain separately labeled for the two people, since standard phone calls cannot connect to both numbers at once.
 - **Sharing previews:** Open Graph and Twitter preview images now use your official `assets/aa-logo.png`, not a project photo. The official logo is also used as the browser and Apple touch icon. Social previews may need to refresh their cache after the new site is deployed.
 
@@ -16,7 +20,7 @@ This is the **complete updated code package** for `github.com/caliphsafe/analawn
 2. Go to [caliphsafe/analawn](https://github.com/caliphsafe/analawn) and upload the **contents** of the extracted folder, replacing matching existing files. Maintain the top-level `dist/`, `scripts/`, and `vercel.json` paths. (The ZIP does not wrap them in another folder.)
 3. **Keep the existing project photography and `dist/assets/aa-logo.png` in your repository.** This ZIP intentionally does not duplicate the already committed large original photo assets. It includes the four new SVG icon assets.
 4. Redeploy in Vercel. Set Framework preset **Other**, Root Directory the repository root, and use the committed `vercel.json` which builds with `node scripts/build.mjs` and serves `dist`.
-5. Check both mobile and desktop and test the SMS link from a real Android phone and a real iPhone. Before sending, verify that the draft shows **both Aaron and Alvin in the same conversation**.
+5. Verify the form on desktop and mobile, activate the recipient address, and confirm a test request reaches the inbox.
 
 ### Existing owner-provided photos
 
@@ -35,3 +39,4 @@ python3 -m http.server 8080 --directory dist
 ```
 
 This avoids depending on ChatGPT hosting. All generated site files remain under your control.
+

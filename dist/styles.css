@@ -66,3 +66,10 @@
  .menu-toggle{width:35px;height:40px;border:0;background:none;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0}
  .menu-toggle span{height:2px;background:var(--green);width:26px}
 }
+
+
+/* Email quote submission */
+.form-trap{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#submit-status{padding:16px;border:1px solid var(--green,#173F35);background:#D4E76C;color:#173F35;line-height:1.7;font-size:13px}
+.email-fallback{font-size:11px;line-height:1.8;margin-top:18px}.email-fallback a{text-decoration:underline;overflow-wrap:anywhere}.delivery-note strong{overflow-wrap:anywhere}
+#send-request:disabled,.back:disabled{opacity:.65;cursor:default}
